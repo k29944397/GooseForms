@@ -15,6 +15,6 @@ import {RouterLink,RouterView} from 'vue-router'
 <style lang="scss" scoped>
 .headerShow{
   width: 100vw;
-  height: 15vh;
+  height: 100px;
 }
 </style>

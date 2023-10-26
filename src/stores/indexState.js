@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export default defineStore('indexState',{
    //data
     state:()=>({
-        location:123465
+        location:1
     }),
    //components
     getters:{

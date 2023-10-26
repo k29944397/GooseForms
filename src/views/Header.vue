@@ -1,7 +1,5 @@
 <script>
-import { mapState, mapActions } from 'pinia';
 import {RouterLink} from 'vue-router';
-import indexState from '../stores/indexState';
 export default{
     data(){
         //值
@@ -12,38 +10,39 @@ export default{
     },
     methods:{
         //公式
+        gohome(){
+            this.$router.push("/");
+        }
     },
-    computed:{
-        ...mapState(indexState, ["location", "locationInfo"])
-    },
-    methods:{
-        ...mapActions(indexState, ["getLocation", "setLocation"])
-    }
 }
 
 </script>
 
 <template>
     <nav class="topnav">
-        <RouterLink to="/">Home</RouterLink>
+        <button @click="gohome"></button>
     </nav>
-
 </template>
 
 <style lang="scss" scoped>
 .topnav{
+    position: relative;
     height: 100%;
     width: 100%;
     font-size: 24pt;
-    background-color: aquamarine;
+    background-color: #C1C1C1;
     color: #fff;
     &:hover{
-    background-color: #f7b606;
-    color: rgb(255, 0, 0);
+    background-color: rgb(168, 168, 168);
+    color: rgb(0, 0, 0);
     }
-    .rourinf{
-        text-decoration: none;
-        margin: 0;
+    button{
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        top: 20px;
+        left: 20px;
+        background: url('../../public/Home.jpg')
     }
 }
 </style>
