@@ -28,7 +28,7 @@ export default{
 .topnav{
     position: relative;
     height: 100%;
-    width: 100%;
+    width: 802px;
     font-size: 24pt;
     background-color: #C1C1C1;
     color: #fff;
@@ -42,6 +42,7 @@ export default{
         width: 50px;
         top: 20px;
         left: 20px;
+        object-fit: cover;
         background: url('../../public/Home.jpg')
     }
 }
