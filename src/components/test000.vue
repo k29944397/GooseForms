@@ -1,9 +1,16 @@
 <script>
+//問卷頁demo
 import { mapState, mapActions } from 'pinia';
 import indexState from '../stores/indexState';
 export default{
     data(){
         //值
+        return{
+            // today:new Date().toLocaleDateString(undefined, this.options),
+            // options:{
+            //     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            // }
+        }
     },
     components:{
         //匯入
@@ -12,17 +19,17 @@ export default{
         //公式
     },
     computed:{
-        ...mapState(indexState, ["location", "locationInfo"])
+        ...mapState(indexState, ["location","today","locationInfo"])
     },
     methods:{
-        ...mapActions(indexState, ["getLocation", "setLocation"])
+        ...mapActions(indexState, ["getLocation","setLocation"])
     }
 }
 
 </script>
 
 <template>
-    <p>投票日期:Today   </p>
+    <p>投票日期:</p><p>{{ today }}</p>
     <button class="okBtn">送出</button>
     <div class="main">
         <h1>青春洋溢高中生人氣投票戰</h1>

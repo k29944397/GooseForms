@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export default defineStore('indexState',{
    //data
     state:()=>({
-        location:1
+        location:1,
+        today:new Date().toLocaleDateString(undefined, {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}),
     }),
    //components
     getters:{

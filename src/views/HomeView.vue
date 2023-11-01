@@ -4,15 +4,15 @@ export default{
     return{
       data: [
         {
-          number:210,
-          name: "中山大學資管碩 72 - 購買傾向調查#21",
+          number:110,
+          name: "Steam夏季特價 - 購買傾向調查#21",
           state:"投票中",
           dateStr: 2021.0601,
           dateEnd: 2021.0701,
           see:"前往",
         },
         {
-          number:211,
+          number:111,
           name: "星巴克玉誠店最佳員工票選",
           state:"投票中",
           dateStr: 2021.1001,
@@ -20,7 +20,7 @@ export default{
           see:"前往",
         },
         {
-          number:212,
+          number:112,
           name: "學生餐廳2F進駐店家票選",
           state:"投票中",
           dateStr: 2021.0801,
@@ -28,7 +28,7 @@ export default{
           see:"前往",
         },
         {
-          number:213,
+          number:113,
           name: "青春洋溢高中生人氣投票戰",
           state:"投票中",
           dateStr: 2021.0901,
@@ -36,11 +36,51 @@ export default{
           see:"前往",
         },
         {
-          number:214,
-          name: "11月風古戰團名票選",
+          number:114,
+          name: "514月風古戰團名票選",
           state:"投票中",
           dateStr: 2021.1201,
           dateEnd: 2022.0101,
+          see:"前往",
+        },
+        {
+          number:115,
+          name: "Steam冬季特價 - 購買傾向調查#22",
+          state:"投票中",
+          dateStr: 2022.1101,
+          dateEnd: 2022.1201,
+          see:"前往",
+        },
+        {
+          number:116,
+          name: "辛巴克裕程店最佳員工票選",
+          state:"投票中",
+          dateStr: 2022.1001,
+          dateEnd: 2022.1101,
+          see:"前往",
+        },
+        {
+          number:117,
+          name: "學生餐廳11F進駐店家票選",
+          state:"投票中",
+          dateStr: 2022.0801,
+          dateEnd: 2022.0901,
+          see:"前往",
+        },
+        {
+          number:118,
+          name: "青春洋溢國中生人氣投票戰",
+          state:"投票中",
+          dateStr: 2022.0901,
+          dateEnd: 2022.1001,
+          see:"前往",
+        },
+        {
+          number:119,
+          name: "11月光古戰團名票選",
+          state:"投票中",
+          dateStr: 2022.1201,
+          dateEnd: 2023.0101,
           see:"前往",
         }
       ],
@@ -86,8 +126,8 @@ export default{
         <input type="text">
       </div>
       <div class="tA">
-        <input type="text">
-        <input type="text">
+        <input type="date" value="2021-12-01">
+        <input type="date" value="2021-12-31">
         <button>搜尋</button>
       </div>
     </div>
@@ -145,7 +185,7 @@ export default{
 
 <style lang="scss" scoped>
 body{
-  height: 400px;
+  height: 500px;
   width: 800px;
   display: flex;
   justify-content: center;
@@ -180,10 +220,13 @@ body{
   }
 }
 .sur{
-  height: 150px;
+  height: 275px;
   width: 600px;
   background-color: gray;
   margin: 5px;
+  td{
+    text-align: center;
+  }
   p{
     margin: 0;
   }
@@ -205,7 +248,9 @@ body{
 .pageCh{
   display: flex;
   flex-wrap:nowrap;
+  justify-content: center;
   p{
+    left: 50%;
     margin: 0 2px;
   }
 }

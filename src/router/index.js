@@ -21,7 +21,17 @@ const router = createRouter({
       path: '/000',
       name: '000',
       component: () => import('../components/test000.vue')
-    }
+    },
+    {
+      path: '/001',
+      name: '001',
+      component: () => import('../components/test001.vue')
+    },
+    {
+      path: '/002',
+      name: '002',
+      component: () => import('../components/test002.vue')
+    },
   ]
 })
 
