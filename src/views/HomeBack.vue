@@ -131,6 +131,9 @@ export default{
         <button>搜尋</button>
       </div>
     </div>
+    
+    <button>*</button>
+    <button>+</button>
     <div class="sur">
       <!-- https://hsuchihting.github.io/vue-js/20200919/3037030482/ -->
       <table class="table">
