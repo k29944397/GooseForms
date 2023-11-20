@@ -12,6 +12,9 @@ export default{
         //公式
         gohome(){
             this.$router.push("/");
+        },
+        gogogo(){
+            this.$router.push("/HomeB");
         }
     },
 }
@@ -20,7 +23,8 @@ export default{
 
 <template>
     <nav class="topnav">
-        <button @click="gohome"></button>
+        <button @click="gohome" class="homeBtn"></button>
+        <button @click="gogogo">B</button>
     </nav>
 </template>
 
@@ -38,12 +42,24 @@ export default{
     }
     button{
         position: absolute;
-        height: 50px;
-        width: 50px;
+        height: 52px;
+        width: 52px;
         top: 20px;
-        left: 20px;
-        object-fit: cover;
-        background: url('../../public/Home.jpg')
+        right: 20px;
+    }
+
+}
+.homeBtn{
+    position: absolute;
+    height: 52px;
+    width: 52px;
+    top: 20px;
+    left: 20px;
+    object-fit: cover;
+    background: url('../../public/Home.jpg');
+    &:active{
+        height: 55px;
+        width: 55px;
     }
 }
 </style>
