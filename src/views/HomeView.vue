@@ -1,90 +1,24 @@
 <script>
 export default{
+  fetch:("http:localhost:8080/api/quiz/search", {
+    method: "post",
+    body: JSON.stringify(data), 
+  })
+  .then((response) => response.json())
+  .then((result) => {
+    console.log("Success:", result);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  }),
   data(){
     return{
-      data: [
-        {
-          number:110,
-          name: "Steam夏季特價 - 購買傾向調查#21",
-          state:"投票中",
-          dateStr: 2021.0601,
-          dateEnd: 2021.0701,
-          see:"前往",
-        },
-        {
-          number:111,
-          name: "星巴克玉誠店最佳員工票選",
-          state:"投票中",
-          dateStr: 2021.1001,
-          dateEnd: 2021.1101,
-          see:"前往",
-        },
-        {
-          number:112,
-          name: "學生餐廳2F進駐店家票選",
-          state:"投票中",
-          dateStr: 2021.0801,
-          dateEnd: 2021.0901,
-          see:"前往",
-        },
-        {
-          number:113,
-          name: "青春洋溢高中生人氣投票戰",
-          state:"投票中",
-          dateStr: 2021.0901,
-          dateEnd: 2021.1001,
-          see:"前往",
-        },
-        {
-          number:114,
-          name: "514月風古戰團名票選",
-          state:"投票中",
-          dateStr: 2021.1201,
-          dateEnd: 2022.0101,
-          see:"前往",
-        },
-        {
-          number:115,
-          name: "Steam冬季特價 - 購買傾向調查#22",
-          state:"投票中",
-          dateStr: 2022.1101,
-          dateEnd: 2022.1201,
-          see:"前往",
-        },
-        {
-          number:116,
-          name: "辛巴克裕程店最佳員工票選",
-          state:"投票中",
-          dateStr: 2022.1001,
-          dateEnd: 2022.1101,
-          see:"前往",
-        },
-        {
-          number:117,
-          name: "學生餐廳11F進駐店家票選",
-          state:"投票中",
-          dateStr: 2022.0801,
-          dateEnd: 2022.0901,
-          see:"前往",
-        },
-        {
-          number:118,
-          name: "青春洋溢國中生人氣投票戰",
-          state:"投票中",
-          dateStr: 2022.0901,
-          dateEnd: 2022.1001,
-          see:"前往",
-        },
-        {
-          number:119,
-          name: "11月光古戰團名票選",
-          state:"投票中",
-          dateStr: 2022.1201,
-          dateEnd: 2023.0101,
-          see:"前往",
-        }
-      ],
-      sortType: "dateStr",
+      id:"",
+      title:"",
+      description:"",
+      start_date:"",
+      end_date:"",
+      sortTyp1e: "dateStr",
       isReverse: false,
       a:"<",
       aa:"<<",
@@ -92,8 +26,6 @@ export default{
       bb:">>"
     }
   },
-  // 以上為資料
-  //照開始時間排序↓↓↓↓↓
   methods: {
     changeType: function (type) {
       var vm = this;
