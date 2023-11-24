@@ -93,7 +93,7 @@ export default{
     }
   },
   // 以上為資料
-  //照開始時間排序↓↓↓↓↓
+
   methods: {
     changeType: function (type) {
       var vm = this;

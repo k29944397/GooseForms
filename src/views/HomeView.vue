@@ -1,32 +1,27 @@
 <script>
 export default{
-  fetch:("http:localhost:8080/api/quiz/search", {
-    method: "post",
-    body: JSON.stringify(data), 
-  })
-  .then((response) => response.json())
-  .then((result) => {
-    console.log("Success:", result);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  }),
   data(){
     return{
-      id:"",
-      title:"",
-      description:"",
-      start_date:"",
-      end_date:"",
-      sortTyp1e: "dateStr",
+      quiz:[],
+      sortType: "dateStr",
       isReverse: false,
       a:"<",
       aa:"<<",
       b:">",
-      bb:">>"
+      bb:">>",
     }
   },
   methods: {
+    fetchGetData() {
+      fetch('http://localhost:8080/api/quiz/search2')
+      .then(response => response.json())
+        .then(data => {
+          data.quizVoList.forEach(element => {
+            this.quiz.push(element.questionnaire)
+          });
+          console.log(this.quiz);
+        });
+    },
     changeType: function (type) {
       var vm = this;
       if (vm.sortType == type) {
@@ -36,12 +31,12 @@ export default{
       }
       vm.sortType = type;
     }
-  },
+  },  
   computed: {
     sortData() {
       var vm = this;
       var type = vm.sortType;
-      return vm.data.sort(function (a, b) {
+      return vm.quiz.sort(function (a, b) {
         if (vm.isReverse) return b[type] - a[type];
         else return a[type] - b[type];
       });
@@ -60,7 +55,7 @@ export default{
       <div class="tA">
         <input type="date" value="1971-01-01">
         <input type="date" value="2099-12-31">
-        <button>搜尋</button>
+        <button @click="fetchGetData">搜尋</button>
       </div>
     </div>
     <div class="sur">
@@ -71,26 +66,25 @@ export default{
             <th>#</th>
             <th>問卷</th>
             <th>狀態</th>
-            <th class="click" @click="changeType('dateStr')">開始時間
+            <th class="click" @click="changeType('quiz.startDate')">開始時間
               <!-- isReverse 為反轉 className -->
               <span class="icon" :class="{'inverse': isReverse}" v-if="sortType == 'dateStr'">
               <i class=" fas fa-angle-up text-success"></i>
               </span>
             </th>
-            <th class="click" @click="changeType('dateEnd')">到期日
+            <th class="click" @click="changeType('quiz.endDate')">到期日
               <span class="icon" :class="{'inverse': isReverse}" v-if="sortType == 'dateEnd'">
               <i class=" fas fa-angle-up text-success"></i>
               </span>
             </th>
             <th>觀看統計</th>
           </tr>
-          <tr v-for="item in sortData" :key="item.dateStr">
-            <td>{{ item.number }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.state }}</td>
-            <td>{{ item.dateStr }}</td>
-            <td>{{ item.dateEnd }}</td>
-            <td>{{ item.see }}</td>
+          <tr v-for="item in quiz" :key="item.id">
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.startDate }}</td>
+            <td>{{ item.endDate }}</td>
           </tr>
         </thead>
       </table>
