@@ -9,17 +9,27 @@ export default{
       aa:"<<",
       b:">",
       bb:">>",
+      kWord: '',
+      sDate: '1971-01-01',
+      eDate: '2099-12-31',
     }
   },
   methods: {
     fetchGetData() {
+      this.quiz=[]//先清空避免重複出現
       fetch('http://localhost:8080/api/quiz/search2')
       .then(response => response.json())
         .then(data => {
           data.quizVoList.forEach(element => {
-            this.quiz.push(element.questionnaire)
+            // if (
+            //   element.questionnaire.title.includes(kWord) &&
+            //   new Date(element.questionnaire.startDate) >= new Date(sDate) &&
+            //   new Date(element.questionnaire.endDate) <= new Date(eDate)
+            // ) {
+              this.quiz.push(element.questionnaire);
+            // }
           });
-          console.log(this.quiz);
+          console.log(`kWord: ${this.kWord}, sDate: ${this.sDate}, eDate: ${this.eDate}`);
         });
     },
     changeType: function (type) {
@@ -50,11 +60,11 @@ export default{
     <div class="search">
       <div class="srA">
         <label for="">問卷標題</label>
-        <input type="text">
+        <input id="kWord" type="text">
       </div>
       <div class="tA">
-        <input type="date" value="1971-01-01">
-        <input type="date" value="2099-12-31">
+        <input id="sDate" type="date" value="1971-01-01">
+        <input id="eDate" type="date" value="2099-12-31">
         <button @click="fetchGetData">搜尋</button>
       </div>
     </div>
