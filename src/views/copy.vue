@@ -11,12 +11,6 @@ export default{
     methods:{
         //公式
     },
-    computed:{
-        ...mapState(indexState, ["location","today","locationInfo"])
-    },
-    methods:{
-        ...mapActions(indexState, ["getLocation", "setLocation"])
-    }
 }
 
 </script>

@@ -8,9 +8,6 @@ export default{
     components:{
         //匯入
     },
-    methods:{
-        //公式
-    },
     computed:{
         ...mapState(indexState, ["location", "locationInfo"])
     },
