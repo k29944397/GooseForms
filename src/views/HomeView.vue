@@ -9,7 +9,7 @@ export default{
       aa:"<<",
       b:">",
       bb:">>",
-      kWord: null,
+      kWord: '',
       sDate: '1971-01-01',
       eDate: '2099-12-31',
     }
