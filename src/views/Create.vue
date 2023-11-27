@@ -4,7 +4,6 @@ import indexState from '../stores/indexState';
 export default{
     data(){
         return {
-            quizVoList:[],
             title: '',
             description: '',
             published:true,
@@ -21,25 +20,36 @@ export default{
     },
     methods:{
         btnTest() {
-            console.log('按鈕有效');
+            console.log(this.startDate);
         },
         ...mapActions(indexState, ["getLocation", "setLocation"]),
         fetchCreateData() {
+
+            //js端的date資料是String，但java的是LocalDate
+            // const startDateString = this.startDate;
+            // const endDateString = this.endDate;
+            // this.startDate = startDateString ? new Date(startDateString) : null;
+            // this.endDate = endDateString ? new Date(endDateString) : null;
+            // const isoStartDateString = this.startDate ? this.startDate.toLocaleDateString() : null;
+            // const isoEndDateString = this.endDate ? this.endDate.toLocaleDateString() : null;
             const requestData = {
                 questionnaire: {
                     title: this.title,
                     description: this.description,
-                    is_published:this.published,
-                    start_date: this.startDate,
-                    end_date: this.endDate,
+                    published:this.published,
+                    startDate: document.getElementById("startDate").value.replace('/','-'),
+                    endDate: document.getElementById("endDate").value.replace('/','-'),
+                    // start_date: isoStartDateString,
+                    // end_date: isoEndDateString,
                 },
                 questionList: [{
-                    q_title: this.qTitle,
-                    option_type: this.optionType,
-                    is_necessary: this.necessary,
-                    q_option: this.option.split(';').map(option => option.trim()),//一次輸入並用分號切開選項
+                    qTitle: this.qTitle,
+                    optionType: this.optionType,
+                    necessary: this.necessary,
+                    option: this.option.split(';').map(option => option.trim()),//一次輸入並用分號切開選項
                 }],
             };
+            console.log(requestData.questionnaire.startDate);
             fetch('http://localhost:8080/api/quiz/create', {
                 method: 'POST',
                 headers: {
@@ -49,13 +59,16 @@ export default{
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Quiz created successfully:', data);
-                console.log(this.startDate);
+                console.log('Create success:', data);
+                console.log(requestData.questionnaire.startDate);
             })
             .catch(error => {
-                console.error('Error creating quiz:', error);
+                console.error('Error creating:', error);
             });
         },
+    },
+    backBtn(){
+        this.$router.push("/HomeB");
     },
     computed:{
     }
@@ -65,7 +78,7 @@ export default{
 <template>
 <body>
     <main>
-        <button>生成問卷</button>
+        <button @click="btnTest()">生成問卷</button>
         <button>回饋</button>
         <button @click="btnTest">統計</button>
         <div class="center">
@@ -89,7 +102,7 @@ export default{
             <input v-model="option" placeholder="請用';'分開各個選項">
         </div>
         <div class="next">
-            <button class="cencelBtn" @click="btnTest">取消</button>
+            <a href="/homeB"><button class="cencelBtn">取消</button></a>
             <button class="nextBtn" @click="fetchCreateData">發布</button>
         </div>
     </main>

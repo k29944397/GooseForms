@@ -9,7 +9,7 @@ export default{
       aa:"<<",
       b:">",
       bb:">>",
-      kWord: '',
+      kWord: null,
       sDate: '1971-01-01',
       eDate: '2099-12-31',
     }
@@ -21,13 +21,13 @@ export default{
       .then(response => response.json())
         .then(data => {
           data.quizVoList.forEach(element => {
-            // if (
-            //   element.questionnaire.title.includes(kWord) &&
-            //   new Date(element.questionnaire.startDate) >= new Date(sDate) &&
-            //   new Date(element.questionnaire.endDate) <= new Date(eDate)
-            // ) {
+            if (
+              element.questionnaire.title.includes(this.kWord) &&
+              element.questionnaire.startDate >= this.sDate &&
+              element.questionnaire.endDate <= this.eDate
+            ) {
               this.quiz.push(element.questionnaire);
-            // }
+            }
           });
           console.log(`kWord: ${this.kWord}, sDate: ${this.sDate}, eDate: ${this.eDate}`);
         });
@@ -60,11 +60,11 @@ export default{
     <div class="search">
       <div class="srA">
         <label for="">問卷標題</label>
-        <input id="kWord" type="text">
+        <input v-model="kWord" type="text">
       </div>
       <div class="tA">
-        <input id="sDate" type="date" value="1971-01-01">
-        <input id="eDate" type="date" value="2099-12-31">
+        <input v-model="sDate" type="date">
+        <input v-model="eDate" type="date">
         <button @click="fetchGetData">搜尋</button>
       </div>
     </div>
