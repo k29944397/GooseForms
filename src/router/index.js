@@ -42,6 +42,11 @@ const router = createRouter({
       name: 'create',
       component: () => import('../views/Create.vue')
     },
+    {
+      path: '/cQ',
+      name: 'cQ',
+      component: () => import('../views/checkQn.vue')
+    },
   ]
 })
 

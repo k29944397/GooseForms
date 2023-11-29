@@ -3,8 +3,8 @@ export default{
   data(){
     return{
       quiz:[],
-      sortType: "dateStr",
-      isReverse: false,
+      // sortType: "dateStr",
+      // isReverse: false,
       a:"<",
       aa:"<<",
       b:">",
@@ -31,26 +31,27 @@ export default{
           });
           console.log(`kWord: ${this.kWord}, sDate: ${this.sDate}, eDate: ${this.eDate}`);
         });
-    },
-    changeType: function (type) {
-      var vm = this;
-      if (vm.sortType == type) {
-        vm.isReverse = !vm.isReverse;
-      } else {
-        vm.isReverse = false;
-      }
-      vm.sortType = type;
-    }
+      },
+    // 讓表單上的問卷能照時間排順
+    // changeType: function (type) {
+    //   var vm = this;
+    //   if (vm.sortType == type) {
+    //     vm.isReverse = !vm.isReverse;
+    //   } else {
+    //     vm.isReverse = false;
+    //   }
+    //   vm.sortType = type;
+    // }
   },  
   computed: {
-    sortData() {
-      var vm = this;
-      var type = vm.sortType;
-      return vm.quiz.sort(function (a, b) {
-        if (vm.isReverse) return b[type] - a[type];
-        else return a[type] - b[type];
-      });
-    }
+    // sortData() {
+    //   var vm = this;
+    //   var type = vm.sortType;
+    //   return vm.quiz.sort(function (a, b) {
+    //     if (vm.isReverse) return b[type] - a[type];
+    //     else return a[type] - b[type];
+    //   });
+    // }
   }
 }
 </script>
@@ -75,6 +76,7 @@ export default{
           <tr>
             <th>#</th>
             <th>問卷</th>
+            <th>說明</th>
             <th>狀態</th>
             <th class="click" @click="changeType('quiz.startDate')">開始時間
               <!-- isReverse 為反轉 className -->
@@ -93,11 +95,14 @@ export default{
             <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.description }}</td>
+            <td>{{ item.published }}</td><!--啟用狀態-->
             <td>{{ item.startDate }}</td>
             <td>{{ item.endDate }}</td>
           </tr>
         </thead>
       </table>
+      <!-- 資料列表分頁製作 -->
+      <!-- https://israynotarray.com/javascript/20190505/1432256317/ -->
       <div class="pageCh">
         <p v-text="aa"></p>
         <p>|</p>

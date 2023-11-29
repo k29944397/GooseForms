@@ -6,7 +6,7 @@ export default{
         return {
             title: '',
             description: '',
-            published:true,
+            published1:false,
             startDate: '',
             endDate: '',
             qTitle:'',
@@ -15,41 +15,36 @@ export default{
             option: '',
         };
     },
-    components:{
-        //匯入
-    },
     methods:{
         btnTest() {
-            console.log(this.startDate);
+            console.log("按鈕正常");
         },
-        ...mapActions(indexState, ["getLocation", "setLocation"]),
         fetchCreateData() {
-
-            //js端的date資料是String，但java的是LocalDate
-            // const startDateString = this.startDate;
-            // const endDateString = this.endDate;
-            // this.startDate = startDateString ? new Date(startDateString) : null;
-            // this.endDate = endDateString ? new Date(endDateString) : null;
-            // const isoStartDateString = this.startDate ? this.startDate.toLocaleDateString() : null;
-            // const isoEndDateString = this.endDate ? this.endDate.toLocaleDateString() : null;
+            const currentDate = new Date();
+            // console.log(currentDate);
+            const startDate = new Date(document.getElementById("startDate").value);
+            // console.log(startDate);
+            const endDate = new Date(document.getElementById("endDate").value);
+            // console.log(endDate);
+            const published1 = currentDate >= startDate && currentDate <= endDate; 
+            // console.log(published1);
             const requestData = {
                 questionnaire: {
                     title: this.title,
                     description: this.description,
-                    published:this.published,
+                    published:published1,
                     startDate: document.getElementById("startDate").value.replace('/','-'),
                     endDate: document.getElementById("endDate").value.replace('/','-'),
-                    // start_date: isoStartDateString,
-                    // end_date: isoEndDateString,
                 },
                 questionList: [{
                     qTitle: this.qTitle,
                     optionType: this.optionType,
                     necessary: this.necessary,
-                    option: this.option.split(';').map(option => option.trim()),//一次輸入並用分號切開選項
+                    option: this.option,
+                    // .split(';').map(option => option.trim()),//一次輸入並用分號切開選項
                 }],
             };
-            console.log(requestData.questionnaire.startDate);
+            // console.log(requestData.questionnaire.startDate);
             fetch('http://localhost:8080/api/quiz/create', {
                 method: 'POST',
                 headers: {
@@ -60,27 +55,22 @@ export default{
             .then(response => response.json())
             .then(data => {
                 console.log('Create success:', data);
-                console.log(requestData.questionnaire.startDate);
+                console.log(requestData.questionList);
             })
             .catch(error => {
                 console.error('Error creating:', error);
             });
         },
     },
-    backBtn(){
-        this.$router.push("/HomeB");
-    },
-    computed:{
-    }
 }
 </script>
 
 <template>
 <body>
     <main>
-        <button @click="btnTest()">生成問卷</button>
-        <button>回饋</button>
-        <button @click="btnTest">統計</button>
+        <button disabled>*生成問卷</button>
+        <a href="/cQ"><button>回饋</button></a>
+        <a href="/002"><button>統計</button></a>
         <div class="center">
             <label class="q_name" for="">問卷名稱:</label>
             <input id="title" type="text" v-model="title" placeholder="問卷名稱">
@@ -95,11 +85,12 @@ export default{
                 <option value="single">單選</option>
                 <option value="multi">多選</option>
             </select>
-            <label for="">問題選項內文:</label>
+            <label for="">問題:</label>
             <input v-model="qTitle" placeholder="請輸入你的問題">
             <!-- <input v-model="necessary" type="checkbox">是否必選 -->
             <label for="">問題的選項:</label>
             <input v-model="option" placeholder="請用';'分開各個選項">
+            <!-- <button>新增問題</button> -->
         </div>
         <div class="next">
             <a href="/homeB"><button class="cencelBtn">取消</button></a>

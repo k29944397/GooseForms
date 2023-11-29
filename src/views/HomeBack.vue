@@ -85,8 +85,8 @@ export default{
       //   }
       // ],
       quiz:[],
-      sortType: "dateStr",
-      isReverse: false,
+      // sortType: "dateStr",
+      // isReverse: false,
       a:"<",
       aa:"<<",
       b:">",
@@ -114,25 +114,25 @@ export default{
           console.log(`kWord: ${this.kWord}, sDate: ${this.sDate}, eDate: ${this.eDate}`);
         });
     },
-    changeType: function (type) {
-      var vm = this;
-      if (vm.sortType == type) {
-        vm.isReverse = !vm.isReverse;
-      } else {
-        vm.isReverse = false;
-      }
-      vm.sortType = type;
-    }
+    // changeType: function (type) {
+    //   var vm = this;
+    //   if (vm.sortType == type) {
+    //     vm.isReverse = !vm.isReverse;
+    //   } else {
+    //     vm.isReverse = false;
+    //   }
+    //   vm.sortType = type;
+    // }
   },  
   computed: {
-    sortData() {
-      var vm = this;
-      var type = vm.sortType;
-      return vm.quiz.sort(function (a, b) {
-        if (vm.isReverse) return b[type] - a[type];
-        else return a[type] - b[type];
-      });
-    }
+    // sortData() {
+    //   var vm = this;
+    //   var type = vm.sortType;
+    //   return vm.quiz.sort(function (a, b) {
+    //     if (vm.isReverse) return b[type] - a[type];
+    //     else return a[type] - b[type];
+    //   });
+    // }
   }
 }
 </script>
@@ -150,16 +150,19 @@ export default{
         <button @click="fetchGetData">搜尋</button>
       </div>
     </div>
-    
-    <button>*</button> <!-- 刪除單筆問卷 -->
-    <a href="/Create"><button>+</button></a>
+    <div class="exBtnArea">
+      <button>刪除勾選問卷</button> <!-- 刪除單筆問卷 -->
+      <a href="/Create"><button>前往生成問卷</button></a>
+    </div>
     <div class="sur">
       <!-- https://hsuchihting.github.io/vue-js/20200919/3037030482/ -->
       <table class="table">
         <thead>
           <tr>
+            <th>刪除</th>
             <th>#</th>
             <th>問卷</th>
+            <th>說明</th>
             <th>狀態</th>
             <th class="click" @click="changeType('dateStr')">開始時間
               <!-- isReverse 為反轉 className -->
@@ -175,9 +178,12 @@ export default{
             <th>觀看統計</th>
           </tr>
           <tr v-for="item in quiz" :key="item.id">
+            <!-- <td><input type="checkbox"></td> -->
+            <input type="checkbox">
             <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.description }}</td>
+            <td>{{ item.published }}</td><!--啟用狀態-->
             <td>{{ item.startDate }}</td>
             <td>{{ item.endDate }}</td>
           </tr>
@@ -208,13 +214,16 @@ export default{
 body{
   height: 510px;
   width: 800px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: 1px solid black;
   flex-wrap:wrap;
 }
+// .exBtnArea{
+
+// }
 .search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 150px;
   width: 600px;
   background-color: gray;

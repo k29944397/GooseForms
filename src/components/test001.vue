@@ -39,9 +39,9 @@ export default{
         <label for="">年齡:</label>
         <p>user.age</p>
         <br>
-        <label for="">請投票給以下一位</label>
+        <label for="">選擇投給:</label>
         <br>
-        <p>田所號二</p>
+        <p>user.ans</p>
         <br>
         <button>修改</button>
     </div>
