@@ -82,8 +82,8 @@ export default{
             <input id="endDate" type="date" v-model="endDate">
             <label for="">問題選項種類:</label>
             <select v-model="optionType">
-                <option value="single">單選</option>
-                <option value="multi">多選</option>
+                <option value="single">single</option>
+                <option value="multi">multi</option>
             </select>
             <label for="">問題:</label>
             <input v-model="qTitle" placeholder="請輸入你的問題">
