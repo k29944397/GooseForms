@@ -24,7 +24,7 @@ export default{
 <template>
     <p>投票日期:</p>
     <p>{{ today }}</p>
-    <button class="okBtn">送出</button>
+    <a href="/002"><button class="okBtn">送出</button></a>
     <div class="main">
         <h1>青春洋溢高中生人氣投票戰</h1>
         <label for="">姓名:</label>
@@ -43,7 +43,7 @@ export default{
         <br>
         <p>user.ans</p>
         <br>
-        <button>修改</button>
+        <a href="/000"><button>修改</button></a>
     </div>
 </template>
 

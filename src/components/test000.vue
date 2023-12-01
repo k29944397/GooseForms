@@ -26,7 +26,8 @@ export default{
 
 <template>
     <p>投票日期:</p><p>{{ today }}</p>
-    <button class="okBtn">下一頁</button>
+    <a href="/001"><button class="okBtn">下一頁</button></a>
+    
     <div class="main">
         <!--q_title-->
         <h1>青春洋溢高中生人氣投票戰</h1>

@@ -2,91 +2,7 @@
 export default{
   data(){
     return{
-      // data: [
-      //   {
-      //     number:110,
-      //     name: "Steam夏季特價 - 購買傾向調查#21",
-      //     state:"投票中",
-      //     dateStr: 2021.0601,
-      //     dateEnd: 2021.0701,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:111,
-      //     name: "星巴克玉誠店最佳員工票選",
-      //     state:"投票中",
-      //     dateStr: 2021.1001,
-      //     dateEnd: 2021.1101,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:112,
-      //     name: "學生餐廳2F進駐店家票選",
-      //     state:"投票中",
-      //     dateStr: 2021.0801,
-      //     dateEnd: 2021.0901,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:113,
-      //     name: "青春洋溢高中生人氣投票戰",
-      //     state:"投票中",
-      //     dateStr: 2021.0901,
-      //     dateEnd: 2021.1001,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:114,
-      //     name: "514月風古戰團名票選",
-      //     state:"投票中",
-      //     dateStr: 2021.1201,
-      //     dateEnd: 2022.0101,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:115,
-      //     name: "Steam冬季特價 - 購買傾向調查#22",
-      //     state:"投票中",
-      //     dateStr: 2022.1101,
-      //     dateEnd: 2022.1201,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:116,
-      //     name: "辛巴克裕程店最佳員工票選",
-      //     state:"投票中",
-      //     dateStr: 2022.1001,
-      //     dateEnd: 2022.1101,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:117,
-      //     name: "學生餐廳11F進駐店家票選",
-      //     state:"投票中",
-      //     dateStr: 2022.0801,
-      //     dateEnd: 2022.0901,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:118,
-      //     name: "青春洋溢國中生人氣投票戰",
-      //     state:"投票中",
-      //     dateStr: 2022.0901,
-      //     dateEnd: 2022.1001,
-      //     see:"前往",
-      //   },
-      //   {
-      //     number:119,
-      //     name: "11月光古戰團名票選",
-      //     state:"投票中",
-      //     dateStr: 2022.1201,
-      //     dateEnd: 2023.0101,
-      //     see:"前往",
-      //   }
-      // ],
       quiz:[],
-      // sortType: "dateStr",
-      // isReverse: false,
       a:"<",
       aa:"<<",
       b:">",
@@ -116,19 +32,21 @@ export default{
         });
     },
     chSelection(id) {
-      if (this.selectedIds.includes(id)) {
+      if (this.selectedIds.includes(id)) {//如果這id已經被選了 就刪除矩陣內的該id
         this.selectedIds = this.selectedIds.filter(selectedId => selectedId !== id);
-      } else {
+      } else {//如果還沒被選到 就把該id丟進去
         this.selectedIds.push(id);
       }
     },
     deleteSelected() {
       axios.post('http://localhost:8080/api/quiz/delete', this.selectedIds)
+      console.log(selectedIds)
       .then(response => {
         console.log('刪除成功:', response.data);
         this.selectedIds = [];//清空勾選的ID的資料
         this.fetchGetData();//刷新
-      })
+      });
+      error.log("error:" , erroe)
     },
   },  
   computed: {
@@ -161,11 +79,9 @@ export default{
             <th>刪除</th>
             <th>#</th>
             <th>問卷</th>
-            <th>說明</th>
             <th>狀態</th>
             <th class="click">開始時間</th>
             <th class="click">到期日</th>
-            <th>統計</th>
           </tr>
           <tr v-for="item in quiz" :key="item.id">
             <input type="checkbox" 
@@ -174,8 +90,7 @@ export default{
             @change="chSelection(item.id)">
             <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.published }}</td><!--啟用狀態-->
+            <td>{{ item.published }}</td>
             <td>{{ item.startDate }}</td>
             <td>{{ item.endDate }}</td>
           </tr>
@@ -242,6 +157,7 @@ body{
   }
 }
 .sur{
+  overflow: auto;
   height: 275px;
   width: 600px;
   background-color: gray;

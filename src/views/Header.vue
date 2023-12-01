@@ -24,7 +24,7 @@ export default{
 <template>
     <nav class="topnav">
         <button @click="gohome" class="homeBtn"></button>
-        <button @click="gogogo">後台</button>
+        <button @click="gogogo">往後台</button>
     </nav>
 </template>
 

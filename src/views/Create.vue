@@ -1,6 +1,4 @@
 <script>
-import { mapState, mapActions } from 'pinia';
-import indexState from '../stores/indexState';
 export default{
     data(){
         return {
@@ -32,11 +30,11 @@ export default{
                 questionnaire: {
                     title: this.title,
                     description: this.description,
-                    published:published1,
+                    published: published1,
                     startDate: document.getElementById("startDate").value.replace('/','-'),
-                    endDate: document.getElementById("endDate").value.replace('/','-'),
+                    endDate: document.getElementById("endDate").value.replace('/','-'),//切換
                 },
-                questionList: [{
+                question_list: [{
                     qTitle: this.qTitle,
                     optionType: this.optionType,
                     necessary: this.necessary,
@@ -54,8 +52,7 @@ export default{
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Create success:', data);
-                console.log(requestData.questionList);
+                console.log('Create success:',requestData.question_list);
             })
             .catch(error => {
                 console.error('Error creating:', error);
@@ -85,6 +82,7 @@ export default{
                 <option value="single">single</option>
                 <option value="multi">multi</option>
             </select>
+
             <label for="">問題:</label>
             <input v-model="qTitle" placeholder="請輸入你的問題">
             <!-- <input v-model="necessary" type="checkbox">是否必選 -->
@@ -94,7 +92,7 @@ export default{
         </div>
         <div class="next">
             <a href="/homeB"><button class="cencelBtn">取消</button></a>
-            <button class="nextBtn" @click="fetchCreateData">發布</button>
+            <button class="postBtn" @click="fetchCreateData">發布</button>
         </div>
     </main>
 </body>
