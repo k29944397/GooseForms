@@ -3,10 +3,6 @@ export default{
   data(){
     return{
       quiz:[],
-      a:"<",
-      aa:"<<",
-      b:">",
-      bb:">>",
       kWord: '',
       sDate: '1971-01-01',
       eDate: '2099-12-31',
@@ -46,7 +42,7 @@ export default{
         this.selectedIds = [];//清空勾選的ID的資料
         this.fetchGetData();//刷新
       });
-      error.log("error:" , erroe)
+      error.log("error:" , error)
     },
   },  
   computed: {
@@ -96,23 +92,6 @@ export default{
           </tr>
         </thead>
       </table>
-      <div class="pageCh">
-        <p v-text="aa"></p>
-        <p>|</p>
-        <p v-text="a"></p>
-        <p>1</p>
-        <p>|</p>
-        <p>2</p>
-        <p>|</p>
-        <p>3</p>
-        <p>|</p>
-        <p>4</p>
-        <p>|</p>
-        <p>5</p>
-        <p v-text="b"></p>
-        <p>|</p>
-        <p v-text="bb"></p>
-      </div>
     </div>
   </body>
 </template>
@@ -181,15 +160,6 @@ body{
   }
   .icon.inverse {
     transform: rotate(180deg)
-  }
-}
-.pageCh{
-  display: flex;
-  flex-wrap:nowrap;
-  justify-content: center;
-  p{
-    left: 50%;
-    margin: 0 2px;
   }
 }
 </style>

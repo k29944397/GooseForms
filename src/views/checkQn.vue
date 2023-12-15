@@ -5,7 +5,7 @@ export default{
     data(){
         return {
             quiz:[],
-            // quizs:[],
+            quizs:[],
             title: '',
             description: '',
             published:false,
@@ -28,7 +28,19 @@ export default{
                 data.quizVoList.forEach(element => {
                     this.quiz.push(element.questionnaire);
                 });
-                console.log(data)
+                console.log(data.quizVoList)
+            });
+        },
+        fetchGetData2() {
+            this.quizs=[]//清空避免重複顯示
+            fetch('http://localhost:8080/api/quiz/search2')
+            .then(response => response.json())
+            .then(data => {
+                data.quizVoList.reverse()
+                data.quizVoList.forEach(element => {
+                    this.quizs.push(element.question_list);
+                });
+                console.log(data.quizVoList.Array)
             });
         },
     },
@@ -45,7 +57,8 @@ export default{
         <button disabled>*回饋</button>
         <a href="/002"><button>統計</button></a>
         <div class="center">
-        <button @click="fetchGetData">取得上一筆資料</button>
+        <button @click="fetchGetData" >取得上一筆資料</button>
+        <button @click="fetchGetData2" >取得上一筆資料</button>
         <thead>
             <tr>
             <th>id</th>
@@ -62,40 +75,24 @@ export default{
             <td>{{ element.published }}</td><!--啟用狀態-->
             <td>{{ element.startDate }}</td>
             <td>{{ element.endDate }}</td>
-            <!-- 問卷/問題 -->
             </tr>
+            <!-- 問卷/問題 -->
             <tr>
-                <th>問題id</th>
+                <th>Qnid</th>
                 <th>問題標題</th>
                 <th>問題種類</th>
                 <th>問題是否必選</th>
                 <th>問題選項</th>
             </tr>
-            <tr v-for="element in quiz" :key="element.qnId"> <!--抓不到-->
+            <!--抓不到-->
+            <tr v-for="element in quizs.quizVoList" :key="element.qnId"> 
                 <td>{{ element.qnId }}</td>
                 <td>{{ element.qTitle }}</td>
                 <td>{{ element.optionType }}</td>
                 <td>{{ element.necessary }}</td>
-                <td>{{ element.Option }}</td>
+                <td>{{ element.option }}</td>
             </tr>
-            
         </thead>
-            <!-- <label class="q_name" for="">問卷名稱:</label>
-            <label id="title">"qn.title"</label>
-            <label for="">問卷說明:</label>
-            <label id="description">"qn.description"</label>
-            <label for="">開始日期:</label>
-            <label id="startDate" >"qn.startDate"</label>
-            <label for="">結束日期:</label>
-            <label id="endDate" >"qn.endDate"</label>
-            <label for="">問題選項種類:</label>
-            <label for="">"q.optionType"</label>
-            <label for="">問題:</label>
-            <label for="">"q.title"</label>
-            <label for="">問題的選項:</label>
-            <label for="">"q.option"</label>
-            <button>新增問題</button>
-            <p>創造日期:</p><p>{{ today }}</p> -->
         </div>
         <div class="next">
             <button >確認並送出問卷</button>

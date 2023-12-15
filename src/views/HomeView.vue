@@ -14,10 +14,10 @@ export default{
   data(){
     return{
       quiz:[],
-      a:"<",
-      aa:"<<",
-      b:">",
-      bb:">>",
+      // a:"<",
+      // aa:"<<",
+      // b:">",
+      // bb:">>",
       kWord: '',
       sDate: '1971-01-01',
       eDate: '2099-12-31',
@@ -209,14 +209,14 @@ export default{
       <!-- 資料列表分頁製作 -->
       <!-- https://israynotarray.com/javascript/20190505/1432256317/ -->
       <!-- https://blog.csdn.net/Strive279/article/details/120546891 -->
-      <div class="pageCh">
+      <!-- <div class="pageCh"> -->
         <!-- <span id="spanFirst">首頁</span>
         <span id="spanPre">上一頁</span>
         <span id="spanNext">下一頁</span>
         <span id="spanLast">末頁</span>
         第<strong id="spanPageNum"></strong>頁/共
         <strong id="spanTotalPage">頁</strong> -->
-        <p v-text="aa"></p>
+        <!-- <p v-text="aa"></p>
         <p>|</p>
         <p v-text="a"></p>
         <p>1</p>
@@ -231,7 +231,7 @@ export default{
         <p v-text="b"></p>
         <p>|</p>
         <p v-text="bb"></p>
-      </div>
+      </div> -->
     </div>
   </body>
 </template>
